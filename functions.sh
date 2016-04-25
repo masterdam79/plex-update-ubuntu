@@ -37,7 +37,7 @@ ASKFORIT() {
 	local __REQUEST=$2
 	local __PROMPTED=""
 
-	echo -n "Input your ${__REQUEST}: "
+	echo -n "${__REQUEST}: "
 	# Put input in array
 	read __PROMPTED[${__VARIABLE}]
 	# Check if prompt was left empty
