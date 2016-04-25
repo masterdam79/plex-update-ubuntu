@@ -16,4 +16,8 @@ fi
 
 ECHOYELLOW "We'll download the newest version of Plex from this URL: "
 ECHOSILVER "${DEBURL}"
-ASKFORIT PROCEED "Proceed?"
+ASKFORIT PROCEED "Proceed? (y/n): "
+
+if [[ ${PROCEED} == "y" ]]; then
+  #statements
+fi
