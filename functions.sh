@@ -1,5 +1,10 @@
 #!/bin/bash
 
+# Nice clean URL, file & version
+DEBURL=$(curl -s https://plex.tv/downloads | grep amd64.deb | grep -v binaries | sed 's/\s.*<a href="//g' | sed 's/\.deb.*<\/a>/.deb/g')
+DEBFILE=$(echo ${DEBURL} | awk -F'/' '{print $6}')
+DEBVERSION=$(echo ${DEBFILE} | awk -F'_' '{print $2}')
+
 ECHOGREY()	{
 	echo -e "\e[1;30m${1}\e[0m"
 }
@@ -48,4 +53,9 @@ ASKFORIT() {
 	else
 		eval ${__VARIABLE}="'${__PROMPTED[${__VARIABLE}]}'"
 	fi
+}
+
+DOWNLOADINSTALL() {
+  wget ${DEBURL} -O /root/${DEBFILE}
+  dpkg -i /root/${DEBFILE}
 }
