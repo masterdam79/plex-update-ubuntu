@@ -4,6 +4,8 @@
 DEBURL=$(curl -s https://plex.tv/downloads | grep amd64.deb | grep -v binaries | sed 's/\s.*<a href="//g' | sed 's/\.deb.*<\/a>/.deb/g')
 DEBFILE=$(echo ${DEBURL} | awk -F'/' '{print $6}')
 DEBVERSION=$(echo ${DEBFILE} | awk -F'_' '{print $2}')
+# Current Plex media server version if installed
+PLEXVERSION=$(dpkg -s plexmediaserver | grep Version | awk '{print $2}')
 
 ECHOGREY()	{
 	echo -e "\e[1;30m${1}\e[0m"
